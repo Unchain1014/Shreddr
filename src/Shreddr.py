@@ -194,14 +194,28 @@ def show_summary(successfully_deleted, failed_to_delete):
     summary_window = Toplevel(root)
     summary_window.title("Shreddr Summary")
     summary_window.iconbitmap(icon_path)  # Set the icon for the summary window
-    summary_window.geometry("400x300")  # Set the window size
+
+    # Get screen width and height
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    # Set window dimensions
+    window_width = 500
+    window_height = 300
+
+    # Calculate position to center the window
+    x = (screen_width // 2) - (window_width // 2)
+    y = (screen_height // 2) - (window_height // 2)
+
+    # Set the geometry of the window
+    summary_window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
     # Create a frame for the text and scrollbar
     frame = tk.Frame(summary_window)
-    frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+    frame.pack(expand=True, fill=tk.BOTH, padx=25, pady=(25, 0))  # Match padding to confirmation prompt
 
     # Add a Text widget for the summary
-    text_widget = tk.Text(frame, wrap=tk.WORD, height=15, font=("Arial", 10))
+    text_widget = tk.Text(frame, wrap=tk.WORD, height=10, font=("Arial", 10))
     text_widget.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
 
     # Add a vertical scrollbar
@@ -220,8 +234,11 @@ def show_summary(successfully_deleted, failed_to_delete):
     text_widget.config(state=tk.DISABLED)  # Make the text widget read-only
 
     # Add a close button
-    close_button = tk.Button(summary_window, text="Close", command=summary_window.destroy)
-    close_button.pack(pady=10)
+    button_frame = tk.Frame(summary_window)
+    button_frame.pack(pady=25)  # Match button padding to confirmation prompt
+
+    close_button = tk.Button(button_frame, text="Close", command=summary_window.destroy, width=10, height=1)
+    close_button.pack(side=tk.LEFT, padx=5)
 
 # Create a simple drag-and-drop GUI
 root = TkinterDnD.Tk()
@@ -254,8 +271,26 @@ root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 root.drop_target_register(DND_FILES)
 root.dnd_bind("<<Drop>>", on_file_drop)
 
-# Update label styling
-label = tk.Label(root, text="DROP FILES HERE", font=("Arial", 12, "bold"), fg="#666666", bg="#222222")
-label.pack(expand=True, fill=tk.BOTH)
+# Create a frame to hold the labels
+label_frame = tk.Frame(root)
+label_frame.pack(expand=True)
+
+# Add the larger text above
+title_label = tk.Label(
+    label_frame,
+    text="SHREDDR",
+    font=("Arial", 20, "bold"),  # Slightly larger font
+    fg="#CCCCCC"
+)
+title_label.pack()
+
+# Add the "DROP FILES HERE" label
+drop_label = tk.Label(
+    label_frame,
+    text="DROP FILES HERE",
+    font=("Arial", 12, "bold"),
+    fg="#CCCCCC"
+)
+drop_label.pack()
 
 root.mainloop()
