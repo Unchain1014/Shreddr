@@ -3,6 +3,7 @@ import sys
 import tkinter as tk
 import uuid
 import time
+import winsound
 from tkinter import messagebox, Toplevel, Label
 from tkinterdnd2 import TkinterDnD, DND_FILES
 
@@ -153,7 +154,7 @@ def show_confirmation(valid_files):
     frame = tk.Frame(confirmation_window)
     frame.pack(expand=True, fill=tk.BOTH, padx=25, pady=(25, 0))
 
-    # Add a Text widget for the file list with a smaller height
+    # Add a Text widget for the file list
     text_widget = tk.Text(frame, wrap=tk.WORD, height=10, font=("Arial", 10))
     text_widget.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
 
@@ -173,6 +174,21 @@ def show_confirmation(valid_files):
     button_frame.pack(pady=25)
 
     def confirm():
+        # Construct the path to the audio file
+        audio_path = os.path.abspath(os.path.join(base_path, "../audio/shred.wav"))
+        print(f"Looking for audio file at: {audio_path}")  # Debugging: Print the resolved path
+        
+        # Check if the audio file exists
+        if not os.path.isfile(audio_path):
+            print(f"Error: Audio file not found at {audio_path}")
+        else:
+            try:
+                # Attempt to play the audio file asynchronously
+                winsound.PlaySound(audio_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
+            except Exception as e:
+                print(f"Error playing audio file: {e}")
+        
+        # Proceed with confirmation logic
         confirmation_window.destroy()
         root.confirmation_result = True
 

@@ -1,6 +1,6 @@
 # Shreddr
 
-A lightweight, portable drag-and-drop tool for securely shredding and deleting files. Shreddr overwrites file data with random bytes, renames the file to obscure metadata, and then permanently deletes it.
+A lightweight, portable drag-and-drop tool for securely shredding and deleting files. Shreddr overwrites file data with random bytes, renames the files to obscure metadata, and then permanently deletes them.
 
 ![screenshot.png](/images/screenshot.PNG)
 
