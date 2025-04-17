@@ -14,10 +14,13 @@ A lightweight, portable drag-and-drop tool for securely shredding and deleting f
    - After overwriting and renaming, the program permanently deletes the file.
 
 4. **Drag-and-Drop Interface**:
-   - The program provides a simple GUI where users can drag and drop files to shred them.
+   - The program provides a simple GUI where users can drag and drop one or multiple files to shred them.
 
 5. **Confirmation Prompt**:
-   - After successfully shredding a file, Shreddr displays a confirmation dialog to notify the user.
+   - Before shredding, Shreddr displays a Yes/No confirmation prompt listing all the files to be shredded. This prevents accidental shredding and allows users to review the files.
+
+6. **Summary Prompt**:
+   - After shredding, Shreddr displays a summary of all successfully shredded files and any files that failed to shred.
 
 ## Why Use Shreddr Instead of the Recycle Bin?
 
@@ -35,14 +38,16 @@ A lightweight, portable drag-and-drop tool for securely shredding and deleting f
 - **Metadata Obfuscation**: Renames the file to a random UUID between overwrite passes.
 - **Permanent Deletion**: Deletes the file after overwriting and renaming.
 - **Drag-and-Drop GUI**: Built with `tkinterdnd2` for an intuitive user experience.
-- **Confirmation Prompt**: Notifies the user upon successful shredding.
+- **Multiple File Support**: Drag and drop multiple files at once to shred them in a single operation.
+- **Confirmation Prompt**: Displays a Yes/No confirmation dialog listing all files to be shredded, preventing accidental shredding.
+- **Summary Prompt**: Provides a summary of successfully shredded files and any failures.
 
 ## Limitations
 
 - **SSD Wear Leveling**:
    - On SSDs, wear leveling may prevent complete overwriting of data. For SSDs, consider using tools that support TRIM commands or secure erase.
-- **Physical Destruction**:
-   - For the highest level of security, physical destruction of the storage medium is recommended.
+- **Advanced Forensic Recovery**:
+   - While Shreddr is effective for most use cases, highly advanced forensic tools might still recover traces of the file. For highly sensitive data, consider physical destruction of the storage medium.
 
 ## Installation
 
@@ -57,9 +62,10 @@ A lightweight, portable drag-and-drop tool for securely shredding and deleting f
 
 ## Usage
 
-1. Launch the program by running Shreddr.py.
-2. Drag and drop files into the program window to shred them.
-2. After shredding, a confirmation dialog will appear to notify you of the successful operation.
+1. Launch the program by running `Shreddr.py`.
+2. Drag and drop one or multiple files into the program window to shred them.
+3. Review the list of files in the confirmation prompt and click "Yes" to proceed or "No" to cancel.
+4. After shredding, a summary dialog will appear listing all successfully shredded files and any failures.
 
 ## Disclaimer
 
