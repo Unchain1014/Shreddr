@@ -2,6 +2,8 @@
 
 A lightweight, portable drag-and-drop tool for securely shredding and deleting files. Shreddr overwrites file data with random bytes, renames the file to obscure metadata, and then permanently deletes it.
 
+![screenshot.png](/images/screenshot.PNG)
+
 ## How It Works
 
 1. **File Overwriting**:
