@@ -11,7 +11,7 @@ A lightweight, portable drag-and-drop tool for securely shredding and deleting f
    - Between overwrite passes, Shreddr renames the file to a random UUID to obscure its metadata (e.g., file name, timestamps).
 
 3. **File Deletion**:
-   - After overwriting and renaming, the program permanently deletes the file using `os.remove`.
+   - After overwriting and renaming, the program permanently deletes the file.
 
 4. **Drag-and-Drop Interface**:
    - The program provides a simple GUI where users can drag and drop files to shred them.
