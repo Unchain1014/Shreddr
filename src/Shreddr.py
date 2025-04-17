@@ -30,14 +30,14 @@ def shred_file(file_path, passes=3, progress_window=None):
                     progress_window.update_status(f"Pass {i + 1}/{passes}: Overwriting file...")
                 with open(file_path, "wb") as f:
                     f.write(os.urandom(file_size))  # Overwrite with random bytes
-                time.sleep(0.5)  # Add a delay of 0.5 seconds
+                time.sleep(0.1)  # Add a delay of 0.5 seconds
                 if progress_window:
                     progress_window.update_status(f"Pass {i + 1}/{passes}: Renaming file...")
                 file_path = rename_file(file_path)  # Rename the file after each pass
-                time.sleep(0.5)  # Add a delay of 0.5 seconds
+                time.sleep(0.1)  # Add a delay of 0.5 seconds
         if progress_window:
             progress_window.update_status("Deleting file...")
-        time.sleep(0.5)  # Add a delay before deletion
+        time.sleep(0.1)  # Add a delay before deletion
         os.remove(file_path)  # Delete the file
         return True
     except Exception as e:
@@ -51,6 +51,8 @@ class ProgressWindow:
     def __init__(self, root, title="Progress"):
         self.window = Toplevel(root)
         self.window.title(title)
+        self.window.iconbitmap(icon_path)  # Set the icon for the progress window
+
 
         # Get screen width and height
         screen_width = root.winfo_screenwidth()
@@ -113,7 +115,7 @@ def on_file_drop(event):
 
     for file_path in valid_files:
         # Create a progress window for each file
-        progress_window = ProgressWindow(root, title=f"Shredding: {os.path.basename(file_path)}")
+        progress_window = ProgressWindow(root, title=f"Shredding...")
         success = shred_file(file_path, progress_window=progress_window)
         progress_window.close()
         if success:
