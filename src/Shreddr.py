@@ -1,4 +1,5 @@
 import os
+import sys
 import tkinter as tk
 import uuid
 import time
@@ -129,6 +130,7 @@ def show_confirmation(valid_files):
     """Displays a scrollable confirmation prompt for the files to be shredded."""
     confirmation_window = Toplevel(root)
     confirmation_window.title("Confirm Shredding")
+    confirmation_window.iconbitmap(icon_path)  # Set the icon for the confirmation window
 
     # Get screen width and height
     screen_width = root.winfo_screenwidth()
@@ -191,6 +193,7 @@ def show_summary(successfully_deleted, failed_to_delete):
     """Displays a scrollable summary of the shredding process."""
     summary_window = Toplevel(root)
     summary_window.title("Shreddr Summary")
+    summary_window.iconbitmap(icon_path)  # Set the icon for the summary window
     summary_window.geometry("400x300")  # Set the window size
 
     # Create a frame for the text and scrollbar
@@ -223,6 +226,15 @@ def show_summary(successfully_deleted, failed_to_delete):
 # Create a simple drag-and-drop GUI
 root = TkinterDnD.Tk()
 root.title("Shreddr")
+
+# Set the application icon
+if getattr(sys, 'frozen', False):  # Check if running as a PyInstaller bundle
+    base_path = sys._MEIPASS  # Path to the temporary folder created by PyInstaller
+else:
+    base_path = os.path.dirname(__file__)  # Path to the script directory
+
+icon_path = os.path.join(base_path, "icon.ico")
+root.iconbitmap(icon_path)  # Replace with the path to your .ico file
 
 # Get screen width and height
 screen_width = root.winfo_screenwidth()
