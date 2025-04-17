@@ -44,30 +44,11 @@ A lightweight, portable drag-and-drop tool for securely shredding and deleting f
 - **Confirmation Prompt**: Displays a Yes/No confirmation dialog listing all files to be shredded, preventing accidental shredding.
 - **Summary Prompt**: Provides a summary of successfully shredded files and any failures.
 
-## Limitations
-
-- **SSD Wear Leveling**:
-   - On SSDs, wear leveling may prevent complete overwriting of data. For SSDs, consider using tools that support TRIM commands or secure erase.
-- **Advanced Forensic Recovery**:
-   - While Shreddr is effective for most use cases, highly advanced forensic tools might still recover traces of the file. For highly sensitive data, consider physical destruction of the storage medium.
-
 ## Installation
 
-1. Install Python (3.7 or later).
-2. Install the required library for drag-and-drop functionality:
-    ```bash
-    pip install tkinterdnd2
-3. Clone or download this repository.
-4. Run the program:
-    ```bash
-    python Shreddr.py
-
-## Usage
-
-1. Launch the program by running `Shreddr.py`.
-2. Drag and drop one or multiple files into the program window to shred them.
-3. Review the list of files in the confirmation prompt and click "Yes" to proceed or "No" to cancel.
-4. After shredding, a summary dialog will appear listing all successfully shredded files and any failures.
+1. Download the latest `Shreddr.rar` release.
+2. Extract to a local folder.
+3. Run the `Shreddr.exe` application directly — no installation required! Since this "installation" is portable, you can right-click the `.exe` and create a desktop shortcut or pin it to your taskbar.
 
 ## Disclaimer
 
